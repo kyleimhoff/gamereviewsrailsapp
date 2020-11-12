@@ -1,0 +1,8 @@
+<h1>Games</h1>
+
+<%= link_to 'New Game', new_game_path %><br><br>
+<ul>
+<% @games.each do |t|%>
+<li><%= link_to t.name, game_path(t) %></li>
+<% end %><br>
+</ul>

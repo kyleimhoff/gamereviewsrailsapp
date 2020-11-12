@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
   
-  resources :user do
-    resorces :game_reviews
+  resources :users do
+    resources :game_reviews
   end
-  resorces :game do
+  resources :games do
     resources :game_reviews
   end
   resources :game_reviews

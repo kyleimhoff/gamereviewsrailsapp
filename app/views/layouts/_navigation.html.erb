@@ -1,0 +1,11 @@
+<% if logged_in? %>
+    <%= link_to 'Games', games_path%>
+    <%= link_to 'Reviews', game_reviews_path%>
+    <%= link_to 'Profile', user_path(current_user) %>
+    <%= button_to 'Logout', logout_path, method: "delete"%>
+<% end %>
+
+<% if !logged_in? %>
+<%= link_to 'Login', login_path%>
+<%= link_to 'Sign Up', signup_path%>
+<% end %>

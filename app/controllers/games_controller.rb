@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     end
 
     def index 
-        @games = Games.all 
+        @games = Game.all 
     end
 
     def show 
