@@ -13,18 +13,28 @@ class UsersController < ApplicationController
     end 
 
     def index
-
+        redirect_if_not_logged_in
+        @users = User.all
     end
 
     def show
-
+        redirect_if_not_logged_in
+        @user = User.find(params[:id])
     end
 
     def update 
-
+        redirect_if_not_logged_in
+        @user = User.find(params[:id])
+        @user.update(user_params)
     end
-    
-    def destroy
 
+    def destroy
+        redirect_if_not_logged_in
+    end
+
+    private 
+
+    def user_params 
+        params.require(:user).permit(:username, :password)
     end
 end
