@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
         else
           redirect_to login_path, {alert: "Your Username or Password was invalid"}
         end
-      end
+    end
 
     def destroy
         session.delete :user_id
