@@ -1,0 +1,13 @@
+<h1>Create a new game! </h1>
+<%= form_for(@game) do |t|%>
+    <%= t.label :name%>
+    <%= t.text_field :name%>
+    <br>
+    <%= t.label :esrb_rating%>
+    <%= t.text_field :esrb_rating%>
+    <br>
+    <%= t.label :description%>
+    <%= t.text_field :description%>
+    <br>
+    <%= t.submit "Submit"%>
+<% end %>
