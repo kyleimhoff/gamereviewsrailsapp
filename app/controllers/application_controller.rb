@@ -2,11 +2,18 @@ class ApplicationController < ActionController::Base
     helper_method :current_user, :logged_in?
     private
     def current_user
-        @current_user ||= User.find(session[:user_id]) if session[:user_id]
-     end
+        if session[:user_id]
+        @current_user = User.find(session[:user_id])
+        @current_user
+        
+        else
+           false 
+        
+        end
+    end
 
         def logged_in? 
-            !!session[:user_id]
+            !!current_user
         end
 
         def redirect_if_not_logged_in 
