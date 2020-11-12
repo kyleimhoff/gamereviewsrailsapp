@@ -6,7 +6,7 @@
 <%= link_to "Write Review", new_game_review_path(@game)%>
 
 <h3>Reviews</h3>
-<%= @game.game_reviews.each do |t|%>
+<%= @game.reviews.each do |t|%>
 <ul>
     <li><%= t.review %><br>
     by: <%= t.user.username%></li>

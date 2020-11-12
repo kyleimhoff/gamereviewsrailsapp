@@ -1,3 +1,0 @@
-class GameReviewsController < ApplicationController
-    
-end

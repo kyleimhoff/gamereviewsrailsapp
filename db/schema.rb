@@ -10,21 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_014104) do
-
-  create_table "game_reviews", force: :cascade do |t|
-    t.string "review"
-    t.integer "rating"
-    t.integer "user_id"
-    t.integer "game_id"
-    t.index ["game_id"], name: "index_game_reviews_on_game_id"
-    t.index ["user_id"], name: "index_game_reviews_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2020_11_12_225128) do
 
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "esrb_rating"
     t.string "description"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.string "review"
+    t.integer "rating"
+    t.integer "user_id"
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_reviews_on_game_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

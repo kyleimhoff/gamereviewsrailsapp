@@ -1,3 +1,11 @@
 <h1>Update your account</h1>
 
-<%= render 'form' %>
+<%= form_for @user do |t|%>
+    <%= t.label :username%>
+    <%= t.text_field :username%>
+    <br>
+    <%= t.label :password%>
+    <%= t.password_field :password%>
+    <br>
+    <%= t.submit "Submit"%>
+<% end %>

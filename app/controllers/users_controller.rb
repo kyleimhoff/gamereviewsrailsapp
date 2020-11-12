@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
     def update 
         redirect_if_not_logged_in
-        @user = User.find(params[:id])
+        @user = User.find(current_user)
         @user.update(user_params)
     end
 

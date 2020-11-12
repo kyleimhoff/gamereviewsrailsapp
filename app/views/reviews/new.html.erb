@@ -1,0 +1,9 @@
+<h1>Create a review </h1>
+<%= form_for(@review) do |f| %>
+    <%= f.hidden_field :game_id, :value => @game.id %>
+    <%= f.label :rating %>
+    <%= f.number_field :rating %><br>
+    <%= f.label :review %>
+    <%= f.text_field :review %>
+    <%= f.submit "Submit"%>
+<% end %>
