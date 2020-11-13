@@ -1,0 +1,14 @@
+<h1>All Reviews</h1>
+<%= @reviews.each do |t|%>
+    <%= link_to t.game.name %>
+    <br>
+    <%= label_tag :rating%>:
+    <%= t.rating %>
+    <br>
+    <%= label_tag :review %>
+    <%= t.review%>
+    <br>
+    <%= t.user.username%>
+    <br><br>
+    <% end %>
+    <br><br>

@@ -14,7 +14,44 @@ class ReviewsController < ApplicationController
         if @review.save 
             redirect_to game_path(@game)
         else 
-            redirect_to new_user_review_path
+            #raise error saying review could not be 
+            render :new
+        end
+    end
+
+    def show 
+        @review = Review.find(params[:id])
+    end
+
+    def index 
+        @reviews = Review.all
+    end
+    
+    def edit 
+        redirect_if_not_logged_in
+        @review = Review.find(params[:id])
+    end
+
+    def update 
+        redirect_if_not_logged_in
+        @review = Review.find(params[:id])
+       if @review.update(review_params)
+            redirect_to review_path(@review)
+       else 
+        #raise error saying changes could not be saved    
+        redirect_to edit_review_path
+       end
+    end
+
+    def destroy 
+        @review = Review.find(params[:id])
+        
+        if @review.destroy 
+            redirect_to games_path 
+        else 
+            #show an error saying it couldnt be destroyed
+            
+            redirect_to review_path(@review)
         end
     end
 

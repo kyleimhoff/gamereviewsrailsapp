@@ -12,25 +12,29 @@ class UsersController < ApplicationController
         end
     end 
 
-    def index
-        redirect_if_not_logged_in
-        @users = User.all
-    end
-
     def show
         redirect_if_not_logged_in
         @user = User.find(params[:id])
+        @reviews = @user.reviews.all
     end
 
+    def edit 
+        redirect_if_not_logged_in
+        @user = User.find(params[:id])
+    end
+    
     def update 
         redirect_if_not_logged_in
-        @user = User.find(current_user)
-        @user.update(user_params)
+        @user = User.find(params[:id])
+       if @user.update(user_params)
+            redirect_to user_path(@user)
+       else 
+        #raise error saying changes could not be saved    
+        redirect_to edit_user_path
+       end
     end
 
-    def destroy
-        redirect_if_not_logged_in
-    end
+    
 
     private 
 

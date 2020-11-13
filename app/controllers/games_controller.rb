@@ -18,16 +18,14 @@ class GamesController < ApplicationController
     end
 
     def show 
+        redirect_if_not_logged_in
         @game = Game.find(params[:id])
     end
 
     def edit
+        redirect_if_not_logged_in
         @game = Game.find(params[:id])
         @game.update(game_params)
-    end
-
-    def destroy 
-
     end
 
     private 

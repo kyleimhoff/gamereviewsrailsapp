@@ -6,3 +6,8 @@
 </p>
 
 <h3>Your Reviews</h3>
+<%= @reviews.each do |t| %>
+<%= link_to t.game.name, review_path(t) %>
+<br>
+<%= t.review %>
+<% end %>

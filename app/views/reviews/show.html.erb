@@ -1,0 +1,9 @@
+<h1> <%= @review.game.name %> </h1>
+<%= label_tag :rating %>:
+<%= @review.rating %>
+<br>
+<%= label_tag :review %>:
+<%= @review.review %>
+<br>
+<%= link_to 'Edit Review', edit_review_path(@review) %>
+<%= button_to 'Delete Review', review_path(@review), method: 'delete' %>
