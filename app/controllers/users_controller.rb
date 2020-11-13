@@ -8,6 +8,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
+            flash[:error] = @user.errors.full_messages.to_sentence
             redirect_to new_user_path
         end
     end 
@@ -29,6 +30,7 @@ class UsersController < ApplicationController
        if @user.update(user_params)
             redirect_to user_path(@user)
        else 
+        flash[:error] = @user.errors.full_messages.to_sentence
         #raise error saying changes could not be saved    
         redirect_to edit_user_path
        end

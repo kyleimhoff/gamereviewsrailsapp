@@ -9,12 +9,13 @@ class GamesController < ApplicationController
         if @game.save
             redirect_to game_path(@game)
         else
+            flash[:error] = @game.errors.full_messages.to_sentence
             redirect_to new_game_path
         end
     end
 
     def index 
-        @games = Game.all 
+        @games = Game.all.order_by_name
     end
 
     def show 

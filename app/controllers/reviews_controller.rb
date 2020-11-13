@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
         if params[:game_id] && @game = Game.find_by_id(params[:game_id])
             @review = Review.new
         else
-            # render an error saying there is no such game
+            flash[:error] = @review.errors.full_messages.to_sentence
             redirect_to games_path
         end
     end
@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
         if @review.save 
             redirect_to game_path(@game)
         else 
-            #raise error saying review could not be 
+            flash[:error] = @review.errors.full_messages.to_sentence 
             render :new
         end
     end
@@ -38,7 +38,7 @@ class ReviewsController < ApplicationController
        if @review.update(review_params)
             redirect_to review_path(@review)
        else 
-        #raise error saying changes could not be saved    
+        flash[:error] = @review.errors.full_messages.to_sentence    
         redirect_to edit_review_path
        end
     end
@@ -49,7 +49,7 @@ class ReviewsController < ApplicationController
         if @review.destroy 
             redirect_to games_path 
         else 
-            #show an error saying it couldnt be destroyed
+            flash[:error] = "Review could not be deleted"
             
             redirect_to review_path(@review)
         end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
-
+  get '/auth/facebook/callback' => 'sessions#facebook'
   resources :sessions, only: [:create, :new, :destroy]
   
   resources :users do
