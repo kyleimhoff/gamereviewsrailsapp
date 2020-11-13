@@ -1,4 +1,4 @@
-<h1> Hello, <%= @user.username%></h1>
+<h1> Hello, <%= @user.username.capitalize%></h1>
 <%= link_to 'Edit Profile', edit_user_path %><br><br>
 
 <p>
@@ -6,7 +6,7 @@
 </p>
 
 <h3>Your Reviews</h3>
-<%= @reviews.each do |t| %>
+<% @reviews.each do |t| %>
 <%= link_to t.game.name, review_path(t) %>
 <br>
 <%= t.review %>

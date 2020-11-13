@@ -1,4 +1,5 @@
 <h1><%= @game.name%></h1><br>
+
 <%=label_tag :esrb_rating %>
 <%= @game.esrb_rating%><br>
 <%=label_tag :description %><br>
@@ -6,7 +7,7 @@
 <%= link_to "Write Review", new_game_review_path(@game)%>
 
 <h3>Reviews</h3>
-<%= @game.reviews.each do |t|%>
+<% @game.reviews.each do |t|%>
 <ul>
     <li><%= t.review %><br>
     by: <%= t.user.username%></li>

@@ -1,6 +1,6 @@
 <h1>All Reviews</h1>
-<%= @reviews.each do |t|%>
-    <%= link_to t.game.name %>
+<% @reviews.each do |t|%>
+    <%= link_to t.game.name, review_path(t)%>
     <br>
     <%= label_tag :rating%>:
     <%= t.rating %>

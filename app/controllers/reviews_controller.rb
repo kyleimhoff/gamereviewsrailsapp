@@ -25,6 +25,7 @@ class ReviewsController < ApplicationController
 
     def index 
         @reviews = Review.all
+        @reviews
     end
     
     def edit 
@@ -35,18 +36,24 @@ class ReviewsController < ApplicationController
     def update 
         redirect_if_not_logged_in
         @review = Review.find(params[:id])
-       if @review.update(review_params)
-            redirect_to review_path(@review)
-       else 
-        flash[:error] = @review.errors.full_messages.to_sentence    
-        redirect_to edit_review_path
+        if @review.user.id == current_user
+            if @review.update(review_params)
+                redirect_to review_path(@review)
+            else 
+                flash[:error] = @review.errors.full_messages.to_sentence    
+                redirect_to edit_review_path
+            end 
+        else 
+            flash[:error] = "You don't have permission to do that!"
+            redirect_to reviews_path
        end
     end
 
     def destroy 
         @review = Review.find(params[:id])
         
-        if @review.destroy 
+        if @review.user.id == current_user
+            @review.destroy 
             redirect_to games_path 
         else 
             flash[:error] = "Review could not be deleted"
@@ -61,4 +68,5 @@ class ReviewsController < ApplicationController
     def review_params 
         params.require(:review).permit(:rating, :review, :user_id, :game_id)
     end
+    
 end
