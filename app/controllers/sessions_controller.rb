@@ -12,13 +12,13 @@ class SessionsController < ApplicationController
         end
     end
 
-    def facebook
+    def google
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
             u.username = auth['info']['name']
             u.password = SecureRandom.hex
         end
-        sessions[:user_id] = @user.id
-        render '/'
+        session[:user_id] = @user.id
+        redirect_to root_path
         
     end
 
